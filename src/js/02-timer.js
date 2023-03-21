@@ -81,3 +81,18 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
+const counterStyle = document.querySelectorAll('.value');
+const ListStyle = document.querySelector('.timer');
+
+ListStyle.style.cssText = 'display: flex; gap: 30px; font-family: monospace;';
+
+counterStyle[0].style.cssText =
+  'display: flex; gap: 10px; font-size: 30px; font-family: monospace;';
+counterStyle[1].style.cssText =
+  'display: flex; gap: 10px; font-size: 30px; font-family: monospace;';
+counterStyle[2].style.cssText =
+  'display: flex; gap: 10px; font-size: 30px; font-family: monospace;';
+counterStyle[3].style.cssText =
+  'display: flex; gap: 10px; font-size: 30px; font-family: monospace;';
+console.log(counterStyle);
