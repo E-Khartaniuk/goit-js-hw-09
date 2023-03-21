@@ -10,7 +10,6 @@ const minutesLine = document.querySelector('[data-minutes]');
 const secondsLine = document.querySelector('[data-seconds]');
 
 const date = new Date();
-// let selectedDates = null;
 
 startBtn.setAttribute('disabled', true);
 
@@ -24,7 +23,6 @@ flatpickr(
     onClose(selectedDates) {
       if (selectedDates[0] < date) {
         Notiflix.Notify.warning('Please choose a date in the future');
-        // window.alert('Please choose a date in the future');
       } else {
         selectedDatesDay = selectedDates[0];
         startBtn.removeAttribute('disabled');
