@@ -10,10 +10,9 @@ const minutesLine = document.querySelector('[data-minutes]');
 const secondsLine = document.querySelector('[data-seconds]');
 
 const date = new Date();
+let selectedDatesDay = null;
 
 startBtn.setAttribute('disabled', true);
-
-let selectedDatesDay = null;
 
 flatpickr(dateEl, {
   enableTime: true,
@@ -22,10 +21,14 @@ flatpickr(dateEl, {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < date) {
+      startBtn.setAttribute('disabled', true);
+      selectedDatesDay = selectedDates[0];
+
       Notiflix.Notify.warning('Please choose a date in the future');
     } else {
       selectedDatesDay = selectedDates[0];
       startBtn.removeAttribute('disabled');
+
       Notiflix.Notify.info('Click start BTN');
     }
   },
