@@ -13,45 +13,53 @@ const date = new Date();
 
 startBtn.setAttribute('disabled', true);
 
-flatpickr(
-  dateEl,
-  (option = {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    minuteIncrement: 1,
-    onClose(selectedDates) {
-      if (selectedDates[0] < date) {
-        Notiflix.Notify.warning('Please choose a date in the future');
-      } else {
-        selectedDatesDay = selectedDates[0];
-        startBtn.removeAttribute('disabled');
-        Notiflix.Notify.info('Click start BTN');
-      }
-    },
-    startCount() {
-      const timeCounter = setInterval(function () {
-        let currentTime = Date.now();
-        let countDown = selectedDatesDay - currentTime;
-        const { days, hours, minutes, seconds } = convertMs(countDown);
+let selectedDatesDay = null;
 
-        dayLine.textContent = days;
-        hoursLine.textContent = hours;
-        minutesLine.textContent = minutes;
-        secondsLine.textContent = seconds;
-        const endOfTime = selectedDatesDay - currentTime;
-        console.log(`${days}, ${hours}, ${minutes}, ${seconds}`);
-        if (endOfTime <= 1000) {
-          Notiflix.Notify.success('End of time!');
-          clearInterval(timeCounter);
-          return;
-        }
-      }, 1000);
-    },
-  })
-);
+flatpickr(dateEl, {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    if (selectedDates[0] < date) {
+      Notiflix.Notify.warning('Please choose a date in the future');
+    } else {
+      selectedDatesDay = selectedDates[0];
+      startBtn.removeAttribute('disabled');
+      Notiflix.Notify.info('Click start BTN');
+    }
+  },
+});
 
-startBtn.addEventListener('click', option.startCount);
+function startCount() {
+  const timeCounter = setInterval(function () {
+    let currentTime = Date.now();
+    let countDown = selectedDatesDay - currentTime;
+    const { days, hours, minutes, seconds } = convertMs(countDown);
+
+    dayLine.textContent = days;
+    hoursLine.textContent = hours;
+    minutesLine.textContent = minutes;
+    secondsLine.textContent = seconds;
+    const endOfTime = selectedDatesDay - currentTime;
+    // console.log(`${days}, ${hours}, ${minutes}, ${seconds}`);
+    if (endOfTime <= 1000) {
+      Notiflix.Notify.success('End of time!');
+      clearInterval(timeCounter);
+      return;
+    }
+  }, 1000);
+}
+
+startBtn.addEventListener('click', startCount);
+
+//
+//
+//
+//
+//
+//
+//
 
 function pad(value) {
   return String(value).padStart(2, '0');
