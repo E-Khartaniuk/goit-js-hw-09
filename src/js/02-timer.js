@@ -85,10 +85,11 @@ function convertMs(ms) {
 const counterStyle = document.querySelectorAll('.value');
 const ListStyle = document.querySelector('.timer');
 
-ListStyle.style.cssText = 'display: flex; gap: 30px; font-family: monospace;';
+ListStyle.style.cssText =
+  'display: flex; gap: 30px; font-family: monospace; justify-content: center';
 
 counterStyle.forEach(
   el =>
     (el.style.cssText =
-      'display: flex; gap: 10px; font-size: 30px; font-family: monospace; justify-content: center')
+      'display: flex; gap: 10px; font-size: 30px; font-family: monospace; justify-content: center; background-color: #bbe6ff; border-radius: 5px; width: 50px; color: #535353;')
 );
