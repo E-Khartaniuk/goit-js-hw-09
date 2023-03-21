@@ -95,4 +95,3 @@ counterStyle[2].style.cssText =
   'display: flex; gap: 10px; font-size: 30px; font-family: monospace; justify-content: center';
 counterStyle[3].style.cssText =
   'display: flex; gap: 10px; font-size: 30px; font-family: monospace; justify-content: center';
-console.log(counterStyle);
